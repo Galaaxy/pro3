@@ -1,0 +1,299 @@
+$mainColor: #000
+$darkGrey: rgba(41,41,40, 1)
+$veryLightGrey: #f3f3f3
+$transparentWhite: rgba(255,255,255,0.8)
+$transTime: 0.5s
+$navColor: #333
+$headFont: 'Tangerine', cursive
+$headFontH2Size: 60px
+
+body, html
+  background-color: #ffffff
+  height: 100%
+
+h1
+  margin-top: 0.5rem
+
+blockquote
+  font-size: 1rem
+
+a.btn-default
+  color: $darkGrey
+
+.content
+  min-height: 100%
+
+  &:after
+    content: ""
+    display: block
+
+.parallax
+  background-attachment: fixed
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+
+.navbar-brand
+  img
+    max-width: 140px
+
+.sliderBox
+  .carousel-inner
+    .carousel-item
+      transition: -webkit-transform 0.5s ease
+      transition: transform 0.5s ease
+      transition: transform 0.5s ease, -webkit-transform 0.5s ease
+      -webkit-backface-visibility: visible
+      backface-visibility: visible
+      img
+        max-height: 700px
+        min-height: 450px
+        width: 100%
+        object-fit: cover
+    h1
+      font-size: 4.5em
+      font-family: $headFont
+      text-shadow: 2px 2px 12px #000
+
+    .carousel-caption
+      bottom: 20%
+
+      @media screen and (max-width: 1035px)
+        bottom: 10%
+        h1
+          font-size: 3.5em
+
+#googleMapBox
+  padding-right: 0
+  padding-left: 0
+
+.std-padding
+  padding-top: 5%
+  padding-bottom: 4%
+
+.darkGrey
+  background-color: $darkGrey
+  color: white
+
+.btn-default
+  padding: 18px 60px
+  border-radius: 0
+  background-color: rgba(255,255,255, 0.9)
+  border: none
+
+  &:hover
+    background-color: rgba(255,255,255, 0.7)
+    border: none
+
+.btn-primary
+  background-color: #333
+  border-color: #000
+
+  &:hover, &:focus, &:active
+    background-color: #595959
+    border-color: #000
+
+.anmeldung, .anmeldung2
+  background-color: #94c11f
+  font-family: $headFont
+  font-size: 1.4em
+  color: #000
+
+  &:hover
+    background-color: #b9e250
+
+@media screen and (max-width: 767px)
+
+  .sliderBox
+    .carousel-inner
+      .carousel-caption
+        h1
+          font-size: 2.5em
+
+  .anmeldung2
+    background-color: #94c11f
+    font-family: $headFont
+    font-size: 1em
+    padding-left: 25px
+    padding-right: 25px
+
+  .event-title
+    a
+      font-size: 0.7em
+
+.beitrag
+  margin-bottom: 20px
+
+@media screen and (min-width: 767px)
+  .beitrag
+    .card
+      background-color: transparent
+      border: none
+
+      .beitragImg
+        background-color: transparent
+
+      .beitragText
+        background-color: #FFF
+
+#beitragBlock
+  background-image: url("../images/house.jpg")
+
+  .container
+    >.row
+      background: rgba(255,255,255,0.9)
+      padding-bottom: 20px
+
+div#contactBox
+  background-image: url("../images/bg_trail_3.jpg")
+
+  .container
+    padding: 2%
+    background: rgba(255,255,255,0.9)
+    border-radius: 5px
+
+  h2
+    font-family: $headFont
+    font-size: $headFontH2Size
+    text-align: center
+    color: $mainColor
+    margin-bottom: 20px
+
+div.contactBox
+  background-image: url("../images/bg_trail_4.jpeg")
+  color: #fff
+
+  h2
+    font-family: $headFont
+    font-size: $headFontH2Size
+
+  .contactContent
+    padding-top: 30px
+
+    .glyphicon
+      font-size: 20px
+
+    a
+      color: #fff
+      &:hover
+        color: #e7e7e7
+
+.gTextBox
+  background-color: $darkGrey
+  color: white
+  h2
+    font-family: $headFont
+    font-size: $headFontH2Size
+
+  div.col-md-3
+    img
+      margin-top: 20px
+      width: 100%
+      max-width: 210px
+
+
+.wpcf7
+  label
+    display: block
+    text-align: left
+
+    input[type=text], input[type=email], textarea
+      width: 100%
+      background-color: #fff
+      border: 1px solid #d9d9d9
+      border-radius: 5px
+
+  input[type=submit]
+    border: 1px solid #d9d9d9
+    display: block
+    padding: 18px 60px
+    background-color: #94c11f
+
+    &:hover
+      background-color: #b9e250
+
+.startdate
+  color: #000
+
+.event-title
+  a
+    color: #94c11f
+
+#trainingBox
+  h2
+    font-family: $headFont
+    font-size: $headFontH2Size
+
+#footerBox
+  padding-top: 5%
+  padding-bottom: 1%
+
+  .row
+    img
+      max-width: 150px
+
+  #footerMenu
+    margin-top: 40px
+
+.width-unset
+  width: unset
+
+.blackLine
+  background-color: #94c11f
+  padding: 7px 0 0 0
+
+.pageBox1
+  background-color: #F5F5F5
+
+  .pageRowHeadline
+    font-family: $headFont
+
+@media screen and (min-width: 991px)
+  .dropdown
+    cursor: pointer
+    &:hover
+      >.dropdown-menu
+        display: block
+
+    >.dropdown-toggle
+      &:active
+      /*Without this, clicking will make it sticky*/
+      pointer-events: none
+
+@media screen and (max-width: 991px)
+  .dropdown-menu
+    padding: unset
+    margin: unset
+    border: none
+
+.galerieImg
+  margin-top: 30px
+
+  img
+    width: 250px
+    border: 5px solid white
+    border-radius: 5px
+
+#teamBox
+  background-image: url(../images/bg_red.jpg)
+  color: white
+
+  h2
+    text-shadow: 2px 2px 12px #000
+    font-family: $headFont
+    font-size: $headFontH2Size
+
+  .lightboxTeam
+    img
+      border-radius: 50%
+
+  .teamDiv
+    h3
+      text-shadow: 2px 2px 12px #000
+    p
+      text-shadow: 2px 2px 12px #000
+
+#galerieBox
+  h2
+    font-family: $headFont
+    font-size: $headFontH2Size

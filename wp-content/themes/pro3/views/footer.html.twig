@@ -1,0 +1,45 @@
+<div class="container-fluid darkGrey std-padding" id="footerBox">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img class="img-responsive d-block mx-auto" src="{{ theme.link }}/images/footer/logo_kwt.png">
+            </div>
+            <div class="col">
+                <img class="img-responsive d-block mx-auto" src="{{ theme.link }}/images/footer/walser.png">
+            </div>
+            <div id="footerMenu" class="text-center col-12">
+
+
+
+                {% for item in menuFooter.items %}
+
+                    {% if item.children %}
+
+                        <a href="{{ item.link }}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.title }} <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+                            {% for child in item.children %}
+                                <li>
+                                    <a href="{{ child.link }}">{{ child.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+
+                        {% if loop.last %}
+                            <a href="{{ item.link }}">{{ item.title }}</a>
+                        {% else %}
+                            <a href="{{ item.link }}">{{ item.title }}</a>
+                            <span>|</span>
+                        {% endif %}
+
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+            <div class="col-12 text-center">
+                <p>Copyright © Haubold Media</p>
+            </div>
+        </div>
+    </div>
+</div>

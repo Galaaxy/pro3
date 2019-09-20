@@ -1,0 +1,73 @@
+<div class="col-md-12">
+    <div class="card" name="{{ wohnung.id }}">
+
+        <div class="card-header">
+            <span class="preisHeader">{{ wohnung.name }}</span>
+            {#<span class="preisRechts">{{ wohnung.preis }} €</span>#}
+        </div>
+
+        <div class="card-body table-responsive">
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Von</th>
+                        <th>Bis</th>
+                        <th>Bezeichnung</th>
+                        <th>Preis p. N.</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                {% for key,preis in preise %}
+                <tbody>
+                    {% set total = preis.aufschlag + wohnung.preis %}
+
+                    <tr data-toggle="collapse" data-target="#list{{ key+1 }}{{ wohnung.id }}" class="accordion-toggle advSelect">
+                        <td>{{ preis.date_von|date("d.m.Y") }}</td>
+                        <td>{{ preis.date_bis|date("d.m.Y") }}</td>
+                        <td>{{ preis.bezeichnung }}</td>
+                        <td>{{ total }} €</td>
+                        <td><img src="{{ plugin_url }}/images/triangle-down.png"></td>
+                    </tr>
+                {% set pPreis = total %}
+                    {% for i in 1..wohnung.maxP %}
+                        {% if i >= wohnung.preisExtraAb %}
+                            {% set pPreis = pPreis + wohnung.preisExtraPP %}
+                        {% endif %}
+                        <tr>
+                            {% if loop.first %}
+                                <td colspan="5" class="hiddenRow">
+                                    <div class="accordion-body collapse advInfo" id="list{{ key+1 }}{{ wohnung.id }}">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Personen</th>
+                                                    <th>Preis p. N.</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td>{{ i }} Person</td>
+                            {% else %}
+                                            <tr>
+                                                <td>{{ i }} Personen</td>
+                            {% endif %}
+
+                                                <td>{{ pPreis }} €</td>
+                                            </tr>
+
+                            {% if loop.last %}
+                                        </table>
+                                    </div>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,47 @@
+{# Abkürzungen erklärt: #}
+{# ew = Eingabefeld Wohnung #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div name="wohnungen" id="wohnungen" class="container-fluid content">
+    <div class="row">
+            <h1>Wohnungen</h1>
+    </div>
+    <div class="row">
+        <form method="post">
+            <button id="addWohnung" class="btn btn-success" name="submit" value="createWohnung" type="submit">+ Wohnung hinzufügen</button>
+        </form>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    {# <th>#</th> #}
+                    <th>Name</th>
+                    <th>Shortcode</th>
+                    <th>Preis</th>
+                    <th>Größe</th>
+                    {#<th>Bild</th>#}
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for wohnung in wohnungen %}
+                <tr>
+                    {# <th>{{ wohung.fewo_id }}</th> #}
+                    <td><a href="{{ actual_url }}&id={{ wohnung.fewo_id }}">{{ wohnung.name }}</a></td>
+                    <td><input class="shortcode" value="[fewo id='{{ wohnung.fewo_id }}']"></td>
+                    <td>{{ wohnung.preis }} €</td>
+                    <td>{{ wohnung.groesse }} qm</td>
+                    {#<td><img class="fewo_img" src="{{ wohnung.src[0] | default("") }}"></td>#}
+                    <td><button value="{{ plugin_url }}" name="{{ wohung.fewo_id }}" class="btn btn-danger deleteButton">Löschen</button></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

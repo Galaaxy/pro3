@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ theme.link }}/css/page.min.css?ver=1.0.0">
+{% endblock %}
+
+{% block body %}
+<div class="start sliderBox">
+    <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="false">
+
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img src="{{ theme.link }}/images/slider/trail_challenge_2.jpg">
+            </div>
+        </div>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item">
+                <img src="{{ theme.link }}/images/slider/trail_challenge_4.jpg">
+            </div>
+        </div>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item">
+                <img src="{{ theme.link }}/images/slider/trail_challenge_5.jpg">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="pageBox">
+
+    <div class="blackLine"></div>
+    <div class="container-fluid pageBox1">
+        <div class="container">
+            <div class="row pageRowHeadline">
+                <div class="col-md-12 text-center">
+                    <h1>{{ post.title }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container pageBox2">
+        <div class="row pageRowContent">
+            <div class="col-md-12">
+                <p>{{ post.content }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+{% block jsIncludes %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+{% endblock %}

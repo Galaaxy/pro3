@@ -1,0 +1,210 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+
+            {#<pre>
+                <code>{{ bilder | print_r }}</code>
+            </pre>#}
+
+            <form class="form-horizontal" method="post">
+
+            <div class="col-md-12 kopfMenu">
+                <h1>Wohnung Bearbeiten</h1>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success" name="submit" value="save">Speichern</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-8 col-lg-6">
+
+                <div class="form-group">
+                    <label for="ewName" class="control-label col-sm-12">Name</label>
+                    <div class="col-md-12">
+                        <input class="form-control" value="{{ fewo_data.name }}" name="ewName" id=" ewName">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ewGroesse" class="col-sm-12 control-label">Größe</label>
+                    <div class="col-md-12 input-group">
+                        <input type="number" class="form-control" value="{{ fewo_data.groesse }}" name="ewGroesse" id=" ewGroesse">
+                        <div class="input-group-addon">qm</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewZimmer" class="col-sm-12 control-label">Anzahl Zimmer</label>
+                    <div class="col-md-12">
+                        <input type="number" class="form-control" value="{{ fewo_data.zimmer }}" name="ewZimmer" id=" ewZimmer">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewSchlafzimmer" class="col-sm-12 control-label">Anzahl Schlafzimmer</label>
+                    <div class="col-md-12">
+                        <input type="number" class="form-control" value="{{ fewo_data.schlafzimmer }}" name="ewSchlafzimmer" id=" ewSchlafzimmer">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewBadezimmer" class="col-sm-12 control-label">Anzahl Badezimmer</label>
+                    <div class="col-md-12">
+                        <input type="number" class="form-control" value="{{ fewo_data.badezimmer }}" name="ewBadezimmer" id=" ewBadezimmer">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewWohnzimmer" class="col-sm-12 control-label">Anzahl Wohnzimmer</label>
+                    <div class="col-md-12">
+                        <input type="number" class="form-control" value="{{ fewo_data.wohnzimmer }}" name="ewWohnzimmer" id=" ewWohnzimmer">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewKuchen" class="col-sm-12 control-label">Anzahl Küchen</label>
+                    <div class="col-md-12">
+                        <input type="number" class="form-control" value="{{ fewo_data.kuechen }}" name="ewKuechen" id=" ewKuechen">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewPreis" class="col-sm-12 control-label">Preis Pro Nacht</label>
+                    <div class="col-md-12 input-group">
+                        <input type="number" class="form-control" value="{{ fewo_data.preis }}" name="ewPreis" id=" ewPreis">
+                        <div class="input-group-addon">€</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewAufenthalt" class="col-sm-12 control-label">Mindestaufenthalt in Tagen</label>
+                    <div class="col-md-12 input-group">
+                        <input type="number" class="form-control" value="{{ fewo_data.aufenthalt }}" name="ewAufenthalt" id=" ewAufenthalt">
+                        <div class="input-group-addon">€</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewMaxP" class="col-sm-12 control-label">Max. Anzahl von Personen</label>
+                    <div class="col-md-12">
+                        <input type="number" class="form-control" value="{{ fewo_data.maxP }}" name="ewMaxP" id=" ewMaxP">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewExtraAb" class="col-sm-12 control-label">Preisaufschlag ab Person Nr.</label>
+                    <div class="col-md-12">
+                        <input type="number" class="form-control" value="{{ fewo_data.preisExtraAb }}" name="ewExtraAb" id=" ewExtraAb">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewExtraPP" class="col-sm-12 control-label">Preisaufschlag Pro Person</label>
+                    <div class="col-md-12 input-group">
+                        <input type="number" class="form-control" value="{{ fewo_data.preisExtraPP }}" name="ewExtraPP" id=" ewExtraPP">
+                        <div class="input-group-addon">€</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="ewReinigung" class="col-sm-12 control-label">Preis Endreinigung</label>
+                    <div class="col-md-12 input-group">
+                        <input type="number" class="form-control" value="{{ fewo_data.reinigung }}" name="ewReinigung" id=" ewReinigung">
+                        <div class="input-group-addon">€</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewHunde" class="col-sm-12 control-label">Hund erlaubt</label>
+                    <div class="col-md-12">
+                        <select class="form-control" name="ewHunde">
+                            {% if fewo_data.hunde == 1 %}
+                                <option value="1" selected>Ja</option>
+                                <option value="0">Nein</option>
+                            {% else %}
+                                <option value="1">Ja</option>
+                                <option value="0" selected>Nein</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewHundeExtra" class="col-sm-12 control-label">Preisaufschlag für Hund pro Nacht</label>
+                    <div class="col-md-12 input-group">
+                        <input type="number" class="form-control" value="{{ fewo_data.hundeExtra }}" name="ewHundeExtra" id=" ewHundeExtra">
+                        <div class="input-group-addon">€</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ewHundeExtraReinigung" class="col-sm-12 control-label">Preisaufschlag Endreinigung wegen Hund</label>
+                    <div class="col-md-12 input-group">
+                        <input type="number" class="form-control" value="{{ fewo_data.hundeReinigung }}" name="ewHundeExtraReinigung" id=" ewHundeExtraReinigung">
+                        <div class="input-group-addon">€</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ewWifi" class="col-sm-12 control-label">Kostenloses W-Lan?</label>
+                    <div class="col-md-12">
+                        <select class="form-control" name="ewWifi">
+                            {% if fewo_data.wifi == 1 %}
+                                <option value="1" selected>Ja</option>
+                                <option value="0">Nein</option>
+                            {% else %}
+                                <option value="1">Ja</option>
+                                <option value="0" selected>Nein</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ewText" class="col-sm-12 control-label">Beschreibung</label>
+                    <div class="col-md-12">
+                        {{ fewo_data.text|wp_editor }}
+                    </div>
+                </div>
+
+                <input type="hidden" name="ewId" value="{{ fewo_data.id }}">
+
+                {# Save Button #}
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success" name="submit" value="save">Speichern</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+
+            <div class="col-xs-12 col-md-4 col-lg-6">
+                <form action="{{ actual_url }}" class="dropzone" method="post" enctype="multipart/form-data" id="dropzone">
+                    <div class="fallback">
+                        <input name="file" type="file" id="file" multiple />
+                    </div>
+                </form>
+                <div class="wohnungImgDiv">
+                    {% for bild in bilder %}
+                        <div class="col-md-12 col-lg-6">
+
+                            {% if bild.marker == 1 %}
+                                <div class="star marker" name="{{ bild.id }}">
+                            {% else %}
+                                <div class="star" name="{{ bild.id }}">
+                            {% endif %}
+                                    <img src="{{ plugin_url }}/images/star_icon.png">
+                                </div>
+
+                            <a class="thumbnail">
+                                {{ bild.img }}
+                            </a>
+
+                            <div class="col-md-12">
+                                <div class="btn btn-danger deleteImg" name="{{ bild.id }}">Löschen</div>
+                                <div class="btn btn-success markImg" name="{{ bild.id }}">Markieren</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ plugin_url }}/js/dropzoneCo.min.js"></script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{# Menu Template: 'menu.twig' #}
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="{{ site.url }}">
+            {#<img src="{{ theme.link }}/images/slider/logo.png" alt="">#}
+            PRO 3
+        </a>
+
+        <button class="navbar-toggler navbar-toggler-right costum-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbarMobile" class="collapse navbar-collapse justify-content-end align-items-center">
+            <ul class="navbar-nav">
+                {% for item in menu.items %}
+                    <li class="{{ item.classes | join(' ') }} dropdown nav-item">
+
+                        {% if item.children %}
+                            <a href="{{ item.link }}" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.title }} <span class="caret"></span></a>
+
+                            <ul class="dropdown-menu bg-dark">
+                                {% for child in item.children %}
+                                    <li>
+                                        <a href="{{ child.link }}" class="nav-link">{{ child.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+
+                            <a href="{{ item.link }}" class="nav-link">{{ item.title }}</a>
+
+                        {% endif %}
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </div><!--/.nav-collapse -->
+
+    </div>
+
+
+</nav>

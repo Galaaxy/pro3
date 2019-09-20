@@ -1,0 +1,152 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+
+
+    <div class="start sliderBox">
+        <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="{{ slider_speed | default("5000")}}" >
+
+            <div class="carousel-inner" role="listbox">
+
+                {% for slide in slider %}
+                    {% if loop.first %}
+                        <div class="carousel-item active">
+                    {% else %}
+                        <div class="carousel-item">
+                    {% endif %}
+                            <img src="{{ slide.image }}">
+                            <div class="carousel-caption">
+                                <h1>{{ slide.title }}</h1>
+                                <p>{{ slide.subtitle }}</p>
+                                <a class="btn btn-default" href="#startTextBox" role="button">Mehr Infos</a>
+                            </div>
+                        </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid darkGrey std-padding startTextBox" id="startTextBox">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <blockquote class="blockquote text-center">
+                            <p class="mb-0">Willkommen auf der Dummy-Site von Pro 3</p>
+                            <footer class="blockquote-footer">Ein Theme von <cite title="Source Title">Haubold Media</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid std-padding parallax" id="beitragBlock">
+        <div class="container">
+
+            <div class="row">
+
+                {{ function('do_shortcode','[fewo id="1"]') }}
+                {{ function('do_shortcode','[preis id="1"]') }}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid std-padding darkGrey" id="galerieBox">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Galerie</h2>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                    {% for bild in galerie %}
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex align-items-center justify-content-center galerieImg">
+                        <a href="{{ bild.galBig[0] }}" class="lightbox">
+                            <img src="{{ bild.galSmall[0] }}">
+                        </a>
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid std-padding parallax" id="teamBox">
+
+        <div class="container">
+            <div class="col-md-12 text-center">
+                <h2>{{ team_title | default("Das Team") }}</h2>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    {% for teams in team %}
+                        <div class="col teamDiv">
+                            <a href="{{ teams.teamBig[0] }}" class="thumbnail lightboxTeam">
+                                <img class="img-responsive d-block mx-auto" src="{{ teams.teamSmall[0] }}">
+                            </a>
+                            <h3 class="text-center">{{ teams.name }}</h3>
+                            <p class="text-center">{{ teams.position }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid std-padding gTextBox">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col ueberUnsText">
+                    <h2 class="text-center">Über Uns</h2>
+                    <p>{{ post.content }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="grayOverlay">
+        <div class="container-fluid parallax std-padding contactBox parallax">
+            <div class="container">
+                <div class="row contactHeader text-center">
+                    <div class="col-12">
+                        <h2>Kontakt</h2>
+                    </div>
+
+                </div>
+                <div class="row text-center contactContent">
+                    {#<div class="col-md-4 col-sm-4">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true">&nbsp;</span><a href="#contactBox">Kontaktformular</a>
+                    </div>#}
+                    <div class="col">
+                        <i class="far fa-envelope"></i> <span id="obf"><script>document.getElementById("obf").innerHTML="<n uers=\"znvygb:vasb@unhobyqzrqvn.ng?fhowrpg=Xbagnxg\" >vasb@unhobyqzrqvn.ng</n>".replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});</script>
+<noscript><span style="unicode-bidi:bidi-override;direction:rtl;">ta.aidemdlobuah@ofni</span></noscript></span>
+                    </div>
+                    <div class="col">
+                        <i class="fas fa-phone"></i> <a href="tel:0551 730249">0551 730249</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="gMapsBox">
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

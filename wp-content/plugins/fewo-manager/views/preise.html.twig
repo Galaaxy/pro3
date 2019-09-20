@@ -1,0 +1,214 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid preisListe">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Preise</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 preisMargin">
+            <form class="form-inline" method="post">
+                <div class="input-group date" data-provide="datepicker">
+                    <input name="dateVon" type="text" class="form-control datepickerVon" placeholder="Von" required>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+                <div class="input-group date" data-provide="datepicker">
+                    <input name="dateBis" type="text" class="form-control datepickerBis" placeholder="Bis" required>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="bezeichnung" class="form-control" placeholder="Bezeichnung" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="aufschlag" class="form-control" placeholder="Aufschlag">
+                </div>
+                <button type="submit" name="submit" class="btn btn-success" value="saveAll">+ Für Alle Anlegen</button>
+            </form>
+        </div>
+
+        <div class="col-md-12 preisMargin">
+            <form class="form-inline" method="post">
+                <select name="wohnungId" class="form-control">
+                    {% for fewo in fewos %}
+                    <option value="{{ fewo.id }}">{{ fewo.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="input-group date" data-provide="datepicker">
+                    <input name="dateVon" type="text" class="form-control datepickerVon" placeholder="Von" required>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+                <div class="input-group date" data-provide="datepicker">
+                    <input name="dateBis" type="text" class="form-control datepickerBis" placeholder="Bis" required>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="bezeichnung" class="form-control" placeholder="Bezeichnung" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="aufschlag" class="form-control" placeholder="Aufschlag">
+                </div>
+                <button type="submit" name="submit" class="btn btn-success" value="saveSolo">+ Anlegen</button>
+            </form>
+        </div>
+    </div>
+
+    {% if preise is not empty %}
+
+    <div class="row">
+
+    {#
+        Iteriere alle Preise durch, Sortiert nach FeWo-ID Aufsteigend
+     #}
+    {% for key, preis in preise %}
+
+
+        {% set total = preis.aufschlag + preis.fewo_preis %}
+
+        {#
+            =======================
+            Beim ersten und letzten Wiederholen muss eine extra Schleife durchlaufen werden
+            =======================
+            HEADER BEREICH
+        #}
+        {% if loop.first %}
+            <div class="col-md-12">
+                <div class="panel panel-default" name="{{ preis.fewo_id }}">
+                    <div class="panel-heading">
+                        <span class="preisHeader">{{ preis.fewo_name }}</span>
+                        <span><input class="shortcode" value="[preis id='{{ preis.id }}']" ></input></span>
+                        <span class="preisRechts">{{ preis.fewo_preis }} €</span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Von</th>
+                                <th>Bis</th>
+                                <th>Bezeichnung</th>
+                                <th>Aufschlag</th>
+                                <th>Total</th>
+                                <th>Löschen</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+            {% set wdh = preis.fewo_id %}
+
+        {% endif %}
+
+        {#
+            =======================
+            Gibt es den Kopfbereich schon? JA? Dann hier rein und die Tabelle mit Daten befüllen!
+            =======================
+            BODY BEREICH
+        #}
+        {% if wdh == preis.fewo_id %}
+
+                    <tr>
+                        <td>{{ preis.date_von|date("d.m.Y") }}</td>
+                        <td>{{ preis.date_bis|date("d.m.Y") }}</td>
+                        <td>{{ preis.bezeichnung }}</td>
+                        <td>{{ preis.aufschlag }} €</td>
+                        <td>{{ total }} €</td>
+                        <td>
+                            {#<button class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>#}
+                            <button class="btn btn-danger deleteButton" name="{{ preis.id }}"><span class="glyphicon glyphicon-trash"></span></button>
+                        </td>
+                    </tr>
+        {#
+            =======================
+            Eine neue Wohnungs-ID ist dran? Gut also Schließe das alte Panel und baue ein neues und befülle es mit dem
+            Header und den ersten Daten
+            =======================
+            HEADER BEREICH & BODY BEREICH
+        #}
+        {% else %}
+
+            </tbody>
+            </table>
+                        {#<button class="btn btn-success" id="{{ wdh }}">+ Neuer Saisonpreis</button>#}
+            </div>
+            </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default" name="{{ preis.fewo_id }}">
+
+                <div class="panel-heading">
+                    <span class="preisHeader">{{ preis.fewo_name }}</span>
+                    <span class="preisRechts">{{ preis.fewo_preis }} €</span>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Von</th>
+                                <th>Bis</th>
+                                <th>Bezeichnung</th>
+                                <th>Aufschlag</th>
+                                <th>Total</th>
+                                <th>Löschen</th>
+                            </tr>
+                        </thead>
+                        {#
+                            =======================
+                            BODY BEREICH
+                        #}
+                        <tbody>
+                            <tr>
+                                <td>{{ preis.date_von|date("d.m.Y") }}</td>
+                                <td>{{ preis.date_bis|date("d.m.Y") }}</td>
+                                <td>{{ preis.bezeichnung }}</td>
+                                <td>{{ preis.aufschlag }} €</td>
+                                <td>{{ total }} €</td>
+                                <td>
+                                    {#<button class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>#}
+                                    <button class="btn btn-danger deleteButton" name="{{ preis.id }}"><span class="glyphicon glyphicon-trash"></span></button>
+                                </td>
+                            </tr>
+
+        {% endif %}
+
+
+        {#
+            =======================
+            Beim ersten und letzten Wiederholen muss eine extra Schleife durchlaufen werden
+            ==> Hier letztes Wiederholen hier wird das letzte Panel geschlossen
+            =======================
+        #}
+        {% if loop.last %}
+
+            </tbody>
+            </table>
+                {#<button class="btn btn-success" id="{{ wdh }}">+ Neuer Saisonpreis</button>#}
+            </div>
+            </div>
+        {% endif %}
+
+        {#
+            =======================
+            Am ende jeder Iteration wird die "wdh" Variable neu gesetzt wichtig zur erkennung wenn eine andere FeWo dran ist.
+            =======================
+        #}
+        {% set wdh = preis.fewo_id %}
+    {% endfor %}
+    </div>
+</div>
+
+    {#<pre>
+        <code>{{ preise[0] | print_r }}</code>
+    </pre>#}
+    {% else %}
+        <p>Noch keine Einträge vorhanden</p>
+    {% endif %}
+{% endblock %}
